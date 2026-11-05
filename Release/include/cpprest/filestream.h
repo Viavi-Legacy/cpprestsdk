@@ -731,11 +731,7 @@ namespace details {
         static pplx::task<std::shared_ptr<basic_streambuf<_CharType>>> open(
             const utility::string_t &_Filename,
             std::ios_base::openmode _Mode = std::ios_base::out,
-#ifdef _WIN32
-            int _Prot = (int)std::ios_base::_Openprot
-#else
-            int _Prot = 0 // unsupported on Linux, for now
-#endif
+            int _Prot = 0
             )
         {
             auto result_tce = pplx::task_completion_event<std::shared_ptr<basic_streambuf<_CharType>>>();
@@ -1017,11 +1013,7 @@ namespace details {
         static pplx::task<streams::basic_istream<_CharType>> open_istream(
             const utility::string_t &file_name,
             std::ios_base::openmode mode = std::ios_base::in,
-#ifdef _WIN32
-            int prot = (int) std::ios_base::_Openprot
-#else
             int prot = 0
-#endif
             )
         {
             mode |= std::ios_base::in;
@@ -1044,11 +1036,7 @@ namespace details {
         static pplx::task<streams::basic_ostream<_CharType>> open_ostream(
             const utility::string_t &file_name,
             std::ios_base::openmode mode = std::ios_base::out,
-#ifdef _WIN32
-            int prot = (int) std::ios_base::_Openprot
-#else
             int prot = 0
-#endif
             )
         {
             mode |= std::ios_base::out;
